@@ -6,7 +6,7 @@ export default function LuxuryGallery() {
       caption: "Precision meets elegance.",
     },
     {
-      src: "/images/berserk.jpeg",
+      src: "/images/Berserk.jpeg",
       alt: "Classic BMW",
       caption: "Timeless beauty on wheels.",
     },
