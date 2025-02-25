@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { FiExternalLink, FiX } from "react-icons/fi";
+import { FiExternalLink } from "react-icons/fi";
 
 export default function Contact({ isVisible = false, onClose = () => {} }) {
   const [animateText, setAnimateText] = useState(false);
@@ -7,8 +7,11 @@ export default function Contact({ isVisible = false, onClose = () => {} }) {
 
   // Close when clicking outside the modal
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
+    function handleClickOutside(e: MouseEvent) {
+      if (
+        modalRef.current &&
+        (modalRef.current as HTMLElement).contains(e.target as Node)
+      ) {
         onClose();
       }
     }

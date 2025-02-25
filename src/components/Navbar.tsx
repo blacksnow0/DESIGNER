@@ -5,7 +5,7 @@ import { MdKeyboardArrowDown, MdMenu, MdClose } from "react-icons/md";
 
 export default function Navbar({ handleVisibility = () => {} }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(null);
+  const [dropdownOpen, setDropdownOpen] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
