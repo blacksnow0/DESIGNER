@@ -7,11 +7,8 @@ export default function Contact({ isVisible = false, onClose = () => {} }) {
 
   // Close when clicking outside the modal
   useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (
-        modalRef.current &&
-        (modalRef.current as HTMLElement).contains(e.target as Node)
-      ) {
+    function handleClickOutside(event) {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
         onClose();
       }
     }
