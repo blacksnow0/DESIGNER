@@ -7,7 +7,7 @@ export default function Gallery() {
   const images = [
     "latest.jpg",
     "saka.jpeg",
-    "berserk.jpeg",
+    "Berserk.jpeg",
     "kanye.jpeg",
     "doom.jpeg",
     "back.jpg",

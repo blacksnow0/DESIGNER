@@ -4,7 +4,7 @@ import { FiSearch } from "react-icons/fi";
 
 export default function Hero({ handleVisibility = () => {} }) {
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-black text-white pt-16">
+    <div className="relative h-screen flex flex-col items-center justify-between bg-black text-white pt-16">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-no-repeat bg-cover bg-center opacity-90"
@@ -12,7 +12,7 @@ export default function Hero({ handleVisibility = () => {} }) {
       ></div>
 
       {/* Main Content */}
-      <div className="w-full max-w-screen-xl mx-auto grid grid-cols-12 items-center md:gap-6 px-4 sm:px-6 lg:px-8 relative z-10 min-h-screen">
+      <div className="w-full max-w-screen-xl mx-auto grid grid-cols-12 items-center md:gap-6 px-4 sm:px-6 lg:px-8 relative z-10 flex-1">
         {/* Text Section */}
         <div className="col-span-12 lg:col-span-6 text-center lg:text-left flex flex-col justify-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl my-4 font-bold tracking-wide">
@@ -39,7 +39,7 @@ export default function Hero({ handleVisibility = () => {} }) {
           </div>
         </div>
 
-        {/* Image Section (Smaller on Mobile) */}
+        {/* Image Section */}
         <div className="flex col-span-12 lg:col-span-6 justify-center lg:justify-end relative w-full mx-auto lg:mx-0">
           <div className="w-60 sm:w-60 md:w-80 lg:w-auto">
             <Image

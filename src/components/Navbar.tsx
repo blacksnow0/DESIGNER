@@ -10,7 +10,7 @@ export default function Navbar({ handleVisibility = () => {} }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > window.innerHeight / 3) {
+      if (window.scrollY > window.innerHeight / 10) {
         setScrolled(true);
       } else {
         setScrolled(false);
