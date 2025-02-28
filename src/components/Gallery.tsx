@@ -84,15 +84,13 @@ function Gallery2() {
   const constraintRef = useRef<HTMLElement | null>(null);
   const [maxWidth, setMaxWidth] = useState(0);
 
-  const length = images.length;
-
   useEffect(() => {
     if (constraintRef.current) {
       const imageWidth = images.length * 450;
       const containerWidth = constraintRef.current.offsetWidth;
       setMaxWidth(-(imageWidth - containerWidth));
     }
-  }, [length]);
+  }, []);
 
   return (
     <motion.section

@@ -12,8 +12,8 @@ export default function Learning() {
         tag="/support"
         text={
           <>
-            <strong>Have question?</strong> We'd love to help! Contact support
-            for any issue you may face.
+            <strong>Have question?</strong> We would love to help! Contact
+            support for any issue you may face.
           </>
         }
         examples={[
@@ -109,7 +109,7 @@ function TypeWritter({
 }: {
   tag: string;
   text: ReactNode;
-  examples: object;
+  examples: string[];
 }) {
   return (
     <div className="w-full max-w-xl space-y-6">
@@ -140,7 +140,7 @@ const MAIN_FADE_DURATION = 0.25;
 
 const SWAP_DELAY_IN_MS = 3500;
 
-function Typewrite({ examples }: { examples: object }) {
+function Typewrite({ examples }: { examples: string[] }) {
   const [exampleIndex, setExampleIndex] = useState(0);
 
   useEffect(() => {
