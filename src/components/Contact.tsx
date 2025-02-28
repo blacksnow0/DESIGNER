@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { FiExternalLink } from "react-icons/fi";
+// import { motion } from "motion/react";
 
 export default function Contact({ isVisible = false, onClose = () => {} }) {
   const [animateText, setAnimateText] = useState(false);
@@ -92,7 +93,8 @@ export default function Contact({ isVisible = false, onClose = () => {} }) {
                         : "opacity-0 translate-y-4"
                     }`}
                   >
-                    {platform.name} <FiExternalLink size={14} />
+                    {platform.name}
+                    <FiExternalLink size={14} />
                   </a>
                 ))}
               </div>
@@ -140,3 +142,61 @@ export default function Contact({ isVisible = false, onClose = () => {} }) {
     </div>
   );
 }
+
+// const DURATION = 0.3;
+// const STAGGER = 0.025;
+
+// const FlipLinks = ({ children, href }: { children: string; href: string }) => {
+//   console.log(children);
+//   return (
+//     <motion.a
+//       initial="initial"
+//       whileHover="hovered"
+//       href={href}
+//       className="relative block overflow-hidden whitespace-nowrap"
+//     >
+//       <div>
+//         {children[0].split("").map((l, i) => {
+//           return (
+//             <motion.span
+//               key={i}
+//               variants={{
+//                 initial: { y: 0 },
+//                 hovered: { y: "-100%" },
+//               }}
+//               transition={{
+//                 duration: DURATION,
+//                 ease: "easeInOut",
+//                 delay: STAGGER * i,
+//               }}
+//               className="inline-block"
+//             >
+//               {l}
+//             </motion.span>
+//           );
+//         })}
+//       </div>
+//       <div className="absolute inset-0">
+//         {children.split("").map((l, i) => {
+//           return (
+//             <motion.span
+//               key={i}
+//               variants={{
+//                 initial: { y: "100%" },
+//                 hovered: { y: 0 },
+//               }}
+//               transition={{
+//                 duration: DURATION,
+//                 ease: "easeInOut",
+//                 delay: STAGGER * i,
+//               }}
+//               className="inline-block"
+//             >
+//               {l}
+//             </motion.span>
+//           );
+//         })}
+//       </div>
+//     </motion.a>
+//   );
+// };

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { FiSearch } from "react-icons/fi";
+import { motion } from "motion/react";
 
 export default function Hero({ handleVisibility = () => {} }) {
   return (
@@ -14,10 +15,18 @@ export default function Hero({ handleVisibility = () => {} }) {
       {/* Main Content */}
       <div className="w-full max-w-screen-xl mx-auto grid grid-cols-12 items-center md:gap-6 px-4 sm:px-6 lg:px-8 relative z-10 flex-1">
         {/* Text Section */}
-        <div className="col-span-12 lg:col-span-6 text-center lg:text-left flex flex-col justify-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl my-4 font-bold tracking-wide">
+        <div className="col-span-12 lg:col-span-6 text-center lg:text-left flex flex-col justify-center ">
+          <motion.h1
+            initial={{ width: 0 }}
+            animate={{ width: "100%" }}
+            transition={{
+              duration: 1,
+              ease: "easeInOut",
+            }}
+            className="overflow-hidden whitespace-nowrap text-4xl sm:text-5xl lg:text-6xl my-4 font-bold tracking-wide"
+          >
             Heading One
-          </h1>
+          </motion.h1>
           <h3 className="text-lg sm:text-xl lg:text-2xl mt-2">
             Sub-heading: This is the sub-heading to the Heading.
           </h3>

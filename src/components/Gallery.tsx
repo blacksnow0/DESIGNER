@@ -1,81 +1,128 @@
-import { useState } from "react";
+"use client";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { motion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Gallery() {
   const images = [
-    "latest.jpg",
     "saka.jpeg",
     "Berserk.jpeg",
     "kanye.jpeg",
     "doom.jpeg",
-    "back.jpg",
+    "saka.jpeg",
+    "Berserk.jpeg",
   ];
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(1); // 1 = next, -1 = prev
+  const constrainRef = useRef<HTMLElement | null>(null);
+  const [maxWidth, setMaxWidth] = useState(0);
 
-  const nextImage = () => {
-    setDirection(1);
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
+  useEffect(() => {
+    if (constrainRef.current) {
+      const containerWidth = constrainRef.current.offsetWidth;
+      const imageWidth = 450 * images.length;
 
-  const prevImage = () => {
-    setDirection(-1);
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
+      setMaxWidth(-(imageWidth - containerWidth));
+    }
+  }, []);
+
+  // const imageVariants = {
+  //   hidden: { opacity: 0, y: 150 },
+  //   visible: (i: number) => ({
+  //     opacity: 1,
+  //     y: 0,
+  //     transition: {
+  //       duration: 0.6,
+  //       delay: i * 0.3,
+  //       ease: "easeOut",
+  //     },
+  //   }),
+  // };
 
   return (
-    <div
-      className="relative lg:min-h-screen flex flex-col items-center justify-center text-white bg-center bg-cover bg-no-repeat transition-all ease-linear"
-      style={{ backgroundImage: `url(/images/${images[currentIndex]})` }}
+    <motion.section
+      ref={constrainRef}
+      className="h-screen w-full overflow-hidden flex items-center bg-blue-300 pb-1/4"
     >
-      {/* Background Blur */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-lg"></div>
-
-      {/* Gallery Heading */}
-      <h1 className="relative z-10 text-3xl font-mono mb-6">Gallery!</h1>
-
-      {/* Gallery Container */}
-      <div className="relative w-[70vw] h-[60vh] overflow-hidden  border border-white/20">
-        {/* Image Wrapper */}
-        <AnimatePresence initial={false} custom={direction}>
-          <motion.div
-            key={currentIndex}
-            className="absolute w-full h-full"
-            initial={{ x: direction * 100 + "%" }}
-            animate={{ x: "0%" }}
-            exit={{ x: -direction * 100 + "%" }}
-            transition={{ duration: 0.7, ease: "easeInOut" }}
-          >
+      <motion.div
+        drag="x"
+        dragConstraints={{ left: maxWidth + 50, right: 0 }}
+        dragElastic={0.2}
+        className="flex w-full gap-14 hover:cursor-grab active:cursor-grabbing"
+        style={{
+          minWidth: images.length * 450 + "px",
+        }}
+      >
+        {images.map((image, index) => {
+          return (
             <Image
-              src={`/images/${images[currentIndex]}`}
-              alt="Gallery Image"
-              width={800}
-              height={500}
-              className="object-cover w-full h-full "
+              key={index}
+              src={`/images/${image}`}
+              alt={image}
+              height={400}
+              width={400}
+              style={{
+                objectFit: "cover",
+              }}
+              className="pointer-events-none"
             />
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* Navigation Buttons */}
-      <div className="absolute bottom-4 right-4 flex space-x-4 z-10">
-        <button
-          onClick={prevImage}
-          className="bg-white text-black p-3 rounded-full hover:bg-gray-300 transition"
-        >
-          <FiChevronLeft size={24} />
-        </button>
-        <button
-          onClick={nextImage}
-          className="bg-white text-black p-3 rounded-full hover:bg-gray-300 transition"
-        >
-          <FiChevronRight size={24} />
-        </button>
-      </div>
-    </div>
+          );
+        })}
+      </motion.div>
+    </motion.section>
   );
 }
+
+function Gallery2() {
+  const images = [
+    "saka.jpeg",
+    "Berserk.jpeg",
+    "kanye.jpeg",
+    "doom.jpeg",
+    "saka.jpeg",
+    "Berserk.jpeg",
+  ];
+
+  const constraintRef = useRef<HTMLElement | null>(null);
+  const [maxWidth, setMaxWidth] = useState(0);
+
+  const length = images.length;
+
+  useEffect(() => {
+    if (constraintRef.current) {
+      const imageWidth = images.length * 450;
+      const containerWidth = constraintRef.current.offsetWidth;
+      setMaxWidth(-(imageWidth - containerWidth));
+    }
+  }, [length]);
+
+  return (
+    <motion.section
+      ref={constraintRef}
+      className="h-screen w-full flex items-center overflow-hidden bg-blue-200"
+    >
+      <motion.div
+        className="flex w-full gap-14 hover:cursor-grab active:cursor-grabbing"
+        drag="x"
+        dragConstraints={{ left: maxWidth, right: 0 }}
+        style={{
+          minWidth: images.length * 450 + "px",
+        }}
+      >
+        {images.map((image, index) => {
+          return (
+            <Image
+              key={index}
+              src={`/images/${image}`}
+              alt={image}
+              height={400}
+              width={400}
+              style={{ objectFit: "cover" }}
+              className="pointer-events-none"
+            />
+          );
+        })}
+      </motion.div>
+    </motion.section>
+  );
+}
+
+export { Gallery2 };
