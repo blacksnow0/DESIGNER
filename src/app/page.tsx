@@ -7,6 +7,7 @@ import { useState } from "react";
 import ContactNew from "@/components/Contactnew";
 import Gallery, { Gallery2 } from "@/components/Gallery";
 import Learning from "@/components/Learning";
+import Visualizer from "@/components/Visualizer";
 
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
@@ -21,6 +22,7 @@ export default function Home() {
       <Hero handleVisibility={handleVisibility} />
       <Contact isVisible={isVisible} onClose={handleVisibility} />
       <ContactNew />
+      <Visualizer />
       <Learning />
       <Gallery />
       <Learning />

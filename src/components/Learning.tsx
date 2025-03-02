@@ -90,7 +90,8 @@ function TextAnimation({ children }: { children: string }) {
   return (
     <motion.h1
       initial={{ width: 0 }}
-      animate={{ width: "100%" }}
+      whileInView={{ width: "100%" }}
+      viewport={{ once: true, amount: 0.5 }} // Triggers when 50% of element is in view
       transition={{
         duration: 2,
         ease: "easeInOut",

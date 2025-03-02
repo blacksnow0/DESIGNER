@@ -12,3 +12,13 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.items {
+  translate: none;
+  rotate: none;
+  scale: none;
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+  transform: translate3d(0px, 0px, 0px) rotate(-1020deg);
+}
